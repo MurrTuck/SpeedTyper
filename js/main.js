@@ -1,5 +1,17 @@
 window.addEventListener("load", init);
 
+//Globals
+
+// Available levels
+const levels = {
+  easy: 5,
+  medium: 3,
+  hard: 2
+};
+
+// To change level
+const currentLevel = levels.easy;
+
 let time = 5;
 let score = 0;
 let isPlaying;
@@ -37,15 +49,83 @@ const words = [
   "magic",
   "master",
   "space",
-  "definition"
+  "definition",
+  "html",
+  "dilly",
+  "composer",
+  "fill",
+  "whole",
+  "clearer",
+  "reason",
+  "singular",
+  "clinic",
+  "contempt",
+  "genetics",
+  "collar",
+  "machine",
+  "resist",
+  "axe",
+  "premise",
+  "usual",
+  "turtle",
+  "catalog",
+  "sentence",
+  "slowing",
+  "murray",
+  "native",
+  "react",
+  "angular",
+  "haircut",
+  "coder",
+  "glance",
+  "kelsey",
+  "hudson",
+  "bennett",
+  "nolan",
+  "tucker"
 ];
 
 //Initialize Game
 function init() {
+  // Show number of seconds in UI
+  seconds.innerHTML = currentLevel;
   // Load word from array
   showWord(words);
+  //Start matching on word input
+  wordInput.addEventListener("input", startMatch);
   // Call countdown every second
   setInterval(countdown, 1000);
+  //Check game Status
+  setInterval(checkStatus, 50);
+}
+
+//Start Match
+function startMatch() {
+  if (matchWords()) {
+    isPlaying = true;
+    time = currentLevel + 1;
+    showWord(words);
+    wordInput.value = "";
+    score++;
+  }
+
+  // If score is -1, display 0
+  if (score === -1) {
+    scoreDisplay.innerHTML = 0;
+  } else {
+    scoreDisplay.innerHTML = score;
+  }
+}
+
+//Match currentWord to wordInput
+function matchWords() {
+  if (wordInput.value === currentWord.innerHTML) {
+    message.innerHTML = "Correct!!!";
+    return true;
+  } else {
+    message.innerHTML = "";
+    return false;
+  }
 }
 
 // Pick & show random word
@@ -69,4 +149,12 @@ function countdown() {
 
   //Show time
   timeDisplay.innerHTML = time;
+}
+
+//Check game status
+function checkStatus() {
+  if (!isPlaying && time === 0) {
+    message.innerHTML = "Game Over!!!";
+    score = -1;
+  }
 }
