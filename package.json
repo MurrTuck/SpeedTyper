@@ -1,0 +1,19 @@
+{
+  "name": "speedtyper",
+  "version": "1.0.0",
+  "description": "Speed Typing Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurrTuck/SpeedTyper.git"
+  },
+  "author": "Murray Tucker",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MurrTuck/SpeedTyper/issues"
+  },
+  "homepage": "https://github.com/MurrTuck/SpeedTyper#readme"
+}
